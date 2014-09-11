@@ -1,3 +1,19 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Dice extends PApplet {
+
 Die one;
 Die two;
 Die three;
@@ -6,12 +22,12 @@ int r;
 int xgo = 0;
 int sw = 1;
 int l = 1;
-void setup()
+public void setup()
 {
 	size(500,300);
 	noLoop();
 }
-void draw()
+public void draw()
 {
 	background(255);
 	stroke(0);
@@ -32,7 +48,7 @@ void draw()
 	line(0,100,xgo,100);
 	text("Level:" + l, 150,250);
 }
-void mousePressed()
+public void mousePressed()
 {
 	if(xgo >= 500){
 		xgo = 0;
@@ -56,11 +72,11 @@ class Die //models one single dice cube
 		ypos = y;
 		numDots = (int) (Math.random() * 6) + 1;
 	}
-	void roll()
+	public void roll()
 	{
 			numDots = (int) (Math.random() * 6) + 1;
 	}
-	void show()
+	public void show()
 	{
 		fill(255);
 		rect(xpos,ypos,30,30);
@@ -110,4 +126,13 @@ class Die //models one single dice cube
             ellipse(xpos+23,ypos+15,5,5);
 		}
 	}
+}
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Dice" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }
